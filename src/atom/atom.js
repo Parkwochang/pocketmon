@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { atom, selector, selectorFamily } from 'recoil';
 import pocketmonApiList from '../api/api';
 
@@ -18,7 +19,11 @@ export const search = atom({
 // NOTE :: 포켓몬 리스트
 export const pocketListState = atom({
   key: 'pocketListStates',
-  default: [],
+  default: {
+    loading: false,
+    data: [],
+    error: null,
+  },
 });
 
 // export const loading = atom({
@@ -26,14 +31,17 @@ export const pocketListState = atom({
 //   default: false,
 // });
 
-const filteredTodoListState = selectorFamily({
+export const pocketListApi = selectorFamily({
   key: 'pocketListState',
   get:
     (limit) =>
     async ({ get }) => {
       const res = await pocketmonApiList(limit).then((res) => res.data.results);
-
-      return {};
+      try {
+        return res;
+      } catch (error) {
+        console.log(error);
+      }
       /*  switch (filter) {
       case 'Show Completed':
         return list.filter((item) => item.isComplete);

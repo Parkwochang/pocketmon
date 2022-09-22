@@ -7,10 +7,10 @@ export default function MainList() {
   return (
     <Content
       style={{
-        padding: '0 50px',
+        padding: '30px 50px 0px 50px',
       }}
     >
-      <Breadcrumb
+      {/* <Breadcrumb
         style={{
           margin: '16px 0',
         }}
@@ -18,7 +18,7 @@ export default function MainList() {
         <Breadcrumb.Item>Home</Breadcrumb.Item>
         <Breadcrumb.Item>List</Breadcrumb.Item>
         <Breadcrumb.Item>App</Breadcrumb.Item>
-      </Breadcrumb>
+      </Breadcrumb> */}
       <div className="site-layout-content">Content</div>
       <PocketCard />
     </Content>
