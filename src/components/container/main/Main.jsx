@@ -1,36 +1,60 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import ListMoveBtn from '../../button/ListMoveBtn';
+import { useNavigate } from 'react-router-dom';
 import Loading from '../../loading/loading';
 import PageMoveList from '../List/PageMoveList';
-import { Breadcrumb, Layout, Menu } from 'antd';
+import { Layout } from 'antd';
 import MenuHeader from '../Header/Header';
 import MainFooter from '../../footer/Footer';
 import MainList from '../List/MainList';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { useEffect, useState } from 'react';
-import { pocketListApi, pocketListState } from '../../../atom/atom';
+import { useEffect } from 'react';
+import { listLength, pocketListState } from '../../../atom/atom';
+import pocketmonApiList from '../../../api/api';
 import axios from 'axios';
 
 export default function Main() {
-  // const [search, setSearch] = useRecoilState(pocketListState);
+  const editIndex = useRecoilValue(listLength); // 상단 메뉴로 받은 파라미터
+  const [list, setList] = useRecoilState(pocketListState);
 
-  // const pocketmonData = useRecoilValue(pocketListApi('151'));
-  // const [first, setfirst] = useState([]);
+  const { limit, offset } = editIndex;
+  console.log(limit, offset, 'params', typeof limit);
+
+  useEffect(() => {
+    let arr = [];
+
+    setList((pre) => ({
+      ...pre,
+      loading: true,
+    }));
+
+    pocketmonApiList()
+      .then((res) => {
+        //NOTE :: name or url
+        const result = res.data.results.slice(offset, limit);
+        //NOTE :: axios reponse
+        result.map((data) =>
+          axios(data.url).then((res) => {
+            //NOTE :: data push
+            arr.push(res.data);
+            //NOTE :: setState
+            setList((pre) => ({
+              ...pre,
+              //NOTE :: deep copy of data push
+              data: Object.assign([], arr),
+            }));
+          })
+        );
+      })
+      .finally(() => {
+        setList((pre) => ({
+          ...pre,
+          loading: false,
+        }));
+      });
+  }, [editIndex]);
+  console.log(list, '탑 메뉴별 리스트');
+
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   let Arr = [];
-  //   const content = pocketmonData.map(async (data) => {
-  //     const res = await axios.get(data.url);
-  //     if (res) {
-  //       Arr.push(res.data);
-  //       return res;
-  //     } else {
-  //       return null;
-  //     }
-  //   });
-  //   setfirst(Arr);
-  // }, []);
-  // console.log(first);
+
   return (
     <>
       <Loading />

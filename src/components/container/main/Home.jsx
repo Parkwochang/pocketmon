@@ -13,12 +13,9 @@ export async function api() {
   const s = 'official-artwork';
   const first = await axios('https://pokeapi.co/api/v2/pokemon?limit=151&offset=70').then((res) => res.data.results);
 
-  console.log(first, '12121212');
   const a = first[0];
   const url = a.url;
-  console.log(url);
   const second = await axios(`${url}`).then((res) => res.data.sprites.other[s].front_default);
-  console.log(second);
 
   return second;
 }

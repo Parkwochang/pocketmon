@@ -1,9 +1,22 @@
-import { Breadcrumb, Layout, Menu } from 'antd';
-import { Link } from 'react-router-dom';
+import { Menu } from 'antd';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { listLength } from '../../../../atom/atom';
+import { listOffset } from './_define';
 
-export default function HeaderMenu(params) {
+export default function HeaderMenu() {
+  const setListLen = useSetRecoilState(listLength);
+
+  /**
+   * @function(@param info) 탑 메뉴 클릭시 버전별 리스트 넘겨줌
+   * @param {number} info
+   */
   const onClick = (info) => {
-    console.log('menuClick', info);
+    let index = info.key - 1;
+
+    setListLen((pre) => ({
+      ...pre,
+      ...listOffset[index],
+    }));
   };
 
   return (

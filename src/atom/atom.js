@@ -6,8 +6,8 @@ import pocketmonApiList from '../api/api';
 export const listLength = atom({
   key: 'pocketMonMenu',
   default: {
-    limit: '151',
-    offset: '0',
+    limit: 151,
+    offset: 0,
   },
 });
 
@@ -26,7 +26,8 @@ export const search = atom({
   ],
 });
 
-// NOTE :: 포켓몬 리스트
+// NOTE :: 전체 포켓몬 리스트
+
 export const pocketListState = atom({
   key: 'pocketListStates',
   default: {
@@ -35,6 +36,8 @@ export const pocketListState = atom({
     error: null,
   },
 });
+
+// NOTE:: 포켓몬 리스트 개별 호출
 
 export const pocketListApi = selectorFamily({
   key: 'pocketListState',

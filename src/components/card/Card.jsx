@@ -14,7 +14,7 @@ export default function PocketCard(props) {
     api().then((res) => setfirst(res /* .sprites.front_default */));
   }, []);
 
-  console.log(first);
+  // console.log(first);
   return (
     <Card>
       <Card.Grid style={gridStyle}>
