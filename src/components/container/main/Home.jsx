@@ -11,7 +11,9 @@ import { Breadcrumb, Layout, Menu } from 'antd';
 
 export async function api() {
   const s = 'official-artwork';
-  const first = await axios('https://pokeapi.co/api/v2/pokemon?limit=151').then((res) => res.data.results);
+  const first = await axios('https://pokeapi.co/api/v2/pokemon?limit=151&offset=70').then((res) => res.data.results);
+
+  console.log(first, '12121212');
   const a = first[0];
   const url = a.url;
   console.log(url);
@@ -24,7 +26,19 @@ export async function api() {
 export default function Home() {
   const [content, setContent] = useRecoilState(pocketListState);
 
-  api();
+  const onNavChange = () => {
+    setContent((pre) => ({
+      ...pre,
+      limit: '251',
+    }));
+  };
+
+  useEffect(() => {
+    const asyncContainer = async () => {
+      await pocketmonApiList();
+    };
+    asyncContainer();
+  }, []);
 
   const onClick = () => {};
   return (

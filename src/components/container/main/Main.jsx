@@ -12,25 +12,25 @@ import { pocketListApi, pocketListState } from '../../../atom/atom';
 import axios from 'axios';
 
 export default function Main() {
-  const [search, setSearch] = useRecoilState(pocketListState);
+  // const [search, setSearch] = useRecoilState(pocketListState);
 
-  const pocketmonData = useRecoilValue(pocketListApi('151'));
-  const [first, setfirst] = useState([]);
+  // const pocketmonData = useRecoilValue(pocketListApi('151'));
+  // const [first, setfirst] = useState([]);
   const navigate = useNavigate();
-  useEffect(() => {
-    let Arr = [];
-    const content = pocketmonData.map(async (data) => {
-      const res = await axios.get(data.url);
-      if (res) {
-        Arr.push(res.data);
-        return res;
-      } else {
-        return null;
-      }
-    });
-    setfirst(Arr);
-  }, []);
-  console.log(first);
+  // useEffect(() => {
+  //   let Arr = [];
+  //   const content = pocketmonData.map(async (data) => {
+  //     const res = await axios.get(data.url);
+  //     if (res) {
+  //       Arr.push(res.data);
+  //       return res;
+  //     } else {
+  //       return null;
+  //     }
+  //   });
+  //   setfirst(Arr);
+  // }, []);
+  // console.log(first);
   return (
     <>
       <Loading />

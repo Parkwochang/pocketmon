@@ -3,6 +3,5 @@
  * @param {*} info
  */
 export const input = (info) => {
-  const [number, name, height, weight] = info;
-  Object.keys();
+  const [name, number] = info;
 };

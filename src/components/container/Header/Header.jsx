@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 import { pocket } from '../../../atom/atom';
 import Search from '../../search/Search';
 import { Breadcrumb, Layout, Menu } from 'antd';
+import HeaderMenu from './menu/HeaderMenu';
 
 export default function MenuHeader() {
   const { Header } = Layout;
@@ -13,18 +14,7 @@ export default function MenuHeader() {
   return (
     <Header>
       <div className="logo" />
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={['2']}
-        items={new Array(8).fill(null).map((_, index) => {
-          const key = index + 1;
-          return {
-            key,
-            label: `nav ${key}`,
-          };
-        })}
-      />
+      <HeaderMenu />
     </Header>
   );
 }
