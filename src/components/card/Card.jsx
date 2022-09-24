@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { api } from '../container/main/Home';
 import { Card } from 'antd';
+import { color } from '../../data/color';
+
 const gridStyle = {
   width: '25%',
   textAlign: 'center',
@@ -13,26 +15,22 @@ export default function PocketCard(props) {
   useEffect(() => {
     api().then((res) => setfirst(res /* .sprites.front_default */));
   }, []);
+  const { data } = props;
 
-  // console.log(first);
   return (
     <Card>
-      <Card.Grid style={gridStyle}>
-        <img src={first} alt="pocketmon" style={{ width: '80%' }} />
-        <p>123{}</p>
-        <p>123{}</p>
-        <div style={{ display: 'flex' }}>
-          <span style={{ width: '45%', backgroundColor: 'green' }}>1{}</span>
-          <span style={{ width: '45%', backgroundColor: 'purple' }}>2{}</span>
-        </div>
-      </Card.Grid>
-      <Card.Grid hoverable={false} style={gridStyle}>
-        Content
-      </Card.Grid>
-      <Card.Grid style={gridStyle}>Content</Card.Grid>
-      <Card.Grid style={gridStyle}>Content</Card.Grid>
-      <Card.Grid style={gridStyle}>Content</Card.Grid>
-      <Card.Grid style={gridStyle}>Content</Card.Grid>
+      {data.data.map((res) => (
+        <Card.Grid style={gridStyle} key={res.id}>
+          <img src={res.sprites} alt="pocketmon" style={{ width: '80%' }} />
+          <p>{res.name}</p>
+          <p>{res.height}</p>
+          <div style={{ display: 'flex' }}>
+            {res.types.map((root) => (
+              <span style={{ width: '45%', backgroundColor: `${color[root]}` }}>{root}</span>
+            ))}
+          </div>
+        </Card.Grid>
+      ))}
     </Card>
   );
 }

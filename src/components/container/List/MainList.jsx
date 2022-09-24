@@ -1,8 +1,12 @@
 import PocketCard from '../../card/Card';
-import { Breadcrumb, Layout, Menu } from 'antd';
+import { Layout } from 'antd';
+import { useRecoilValue } from 'recoil';
+import { pocketListState } from '../../../atom/atom';
 
 export default function MainList() {
-  const { Header, Content, Footer } = Layout;
+  const { Content } = Layout;
+
+  const data = useRecoilValue(pocketListState);
 
   return (
     <Content
@@ -20,7 +24,7 @@ export default function MainList() {
         <Breadcrumb.Item>App</Breadcrumb.Item>
       </Breadcrumb> */}
       <div className="site-layout-content">Content</div>
-      <PocketCard />
+      <PocketCard data={data} />
     </Content>
   );
 }

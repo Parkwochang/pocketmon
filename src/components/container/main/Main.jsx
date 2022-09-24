@@ -13,10 +13,10 @@ import axios from 'axios';
 
 export default function Main() {
   const editIndex = useRecoilValue(listLength); // 상단 메뉴로 받은 파라미터
+
   const [list, setList] = useRecoilState(pocketListState);
 
   const { limit, offset } = editIndex;
-  console.log(limit, offset, 'params', typeof limit);
 
   useEffect(() => {
     let arr = [];
@@ -34,13 +34,35 @@ export default function Main() {
         result.map((data) =>
           axios(data.url).then((res) => {
             //NOTE :: data push
-            arr.push(res.data);
+
+            const data = {
+              name: res.data.name,
+              id: res.data.id,
+              height: res.data.height,
+              sprites: res.data.sprites.other['official-artwork'].front_default,
+              types: res.data.types.map((data) => data.type.name),
+            };
+
+            arr.push(data);
+
             //NOTE :: setState
-            setList((pre) => ({
-              ...pre,
-              //NOTE :: deep copy of data push
-              data: Object.assign([], arr),
-            }));
+            if (arr.length === 150) {
+              let as = Object.assign(
+                [],
+                arr.sort((a, b) => {
+                  if (a.id > b.id) return 1;
+                  if (a.id === b.id) return 0;
+                  if (a.id < b.id) return -1;
+                })
+              );
+              console.log(as, '십새끼');
+
+              setList((pre) => ({
+                ...pre,
+                //NOTE ::shallow copy of data push
+                data: Object.assign([], arr),
+              }));
+            }
           })
         );
       })
@@ -51,7 +73,6 @@ export default function Main() {
         }));
       });
   }, [editIndex]);
-  console.log(list, '탑 메뉴별 리스트');
 
   const navigate = useNavigate();
 

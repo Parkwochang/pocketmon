@@ -11,21 +11,6 @@ export const listLength = atom({
   },
 });
 
-// NOTE :: 포켓몬 개별 데이터
-export const search = atom({
-  key: 'pocketmonDate',
-  default: [
-    {
-      sprites: {},
-      name: '',
-      height: '',
-      weight: '',
-      id: '',
-      types: [],
-    },
-  ],
-});
-
 // NOTE :: 전체 포켓몬 리스트
 
 export const pocketListState = atom({
