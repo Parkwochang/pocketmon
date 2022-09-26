@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import Loading from '../../loading/loading';
 import PageMoveList from '../List/PageMoveList';
 import { Layout } from 'antd';
 import MenuHeader from '../Header/Header';
@@ -7,10 +6,10 @@ import MainFooter from '../../footer/Footer';
 import MainList from '../List/MainList';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useEffect } from 'react';
-import { handOverData, listLength, pocketListState } from '../../../atom/atom';
+import { listLength, pocketListState } from '../../../atom/atom';
 import pocketmonApiList from '../../../api/api';
 import axios from 'axios';
-import IndependentCard from '../../card/independentCard';
+import Search from '../../search/Search';
 
 export default function Main() {
   const editIndex = useRecoilValue(listLength); // 상단 메뉴로 받은 파라미터
@@ -67,7 +66,6 @@ export default function Main() {
             }
           })
         );
-        console.log(list, '최종');
       })
       .finally(() => {
         setList((pre) => ({
@@ -84,6 +82,7 @@ export default function Main() {
       <Layout className="layout">
         {<MenuHeader />}
         {/* {loading ? <Loading /> : } */}
+        <Search />
         <MainList />
         <MainFooter />
         <PageMoveList click={() => navigate('/')} />
