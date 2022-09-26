@@ -7,9 +7,10 @@ import MainFooter from '../../footer/Footer';
 import MainList from '../List/MainList';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useEffect } from 'react';
-import { listLength, pocketListState } from '../../../atom/atom';
+import { handOverData, listLength, pocketListState } from '../../../atom/atom';
 import pocketmonApiList from '../../../api/api';
 import axios from 'axios';
+import IndependentCard from '../../card/independentCard';
 
 export default function Main() {
   const editIndex = useRecoilValue(listLength); // 상단 메뉴로 받은 파라미터
@@ -17,6 +18,8 @@ export default function Main() {
   const [list, setList] = useRecoilState(pocketListState);
 
   const { limit, offset } = editIndex;
+
+  // const { loading } = list; -> 로딩용
 
   useEffect(() => {
     let arr = [];
@@ -45,8 +48,8 @@ export default function Main() {
 
             arr.push(data);
 
-            //NOTE :: setState
-            if (arr.length === 150) {
+            //NOTE :: setState -> 먼저 담고 비교 후 출력 -> 조건을 애매하게 하면 렌더를 계속해서 느려짐
+            if (arr.length === limit - offset) {
               let as = Object.assign(
                 [],
                 arr.sort((a, b) => {
@@ -55,16 +58,16 @@ export default function Main() {
                   if (a.id < b.id) return -1;
                 })
               );
-              console.log(as, '십새끼');
 
               setList((pre) => ({
                 ...pre,
                 //NOTE ::shallow copy of data push
-                data: Object.assign([], arr),
+                data: as,
               }));
             }
           })
         );
+        console.log(list, '최종');
       })
       .finally(() => {
         setList((pre) => ({
@@ -78,9 +81,9 @@ export default function Main() {
 
   return (
     <>
-      <Loading />
       <Layout className="layout">
-        <MenuHeader />
+        {<MenuHeader />}
+        {/* {loading ? <Loading /> : } */}
         <MainList />
         <MainFooter />
         <PageMoveList click={() => navigate('/')} />

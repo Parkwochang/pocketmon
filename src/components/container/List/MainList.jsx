@@ -1,12 +1,17 @@
+import React from 'react';
 import PocketCard from '../../card/Card';
 import { Layout } from 'antd';
-import { useRecoilValue } from 'recoil';
-import { pocketListState } from '../../../atom/atom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { handOverData, pocketListState } from '../../../atom/atom';
+import IndependentCard from '../../card/independentCard';
 
-export default function MainList() {
+export default function MainList(props) {
   const { Content } = Layout;
 
   const data = useRecoilValue(pocketListState);
+
+  const click = useRecoilValue(handOverData);
+  const setClick = useSetRecoilState(handOverData);
 
   return (
     <Content
@@ -24,7 +29,7 @@ export default function MainList() {
         <Breadcrumb.Item>App</Breadcrumb.Item>
       </Breadcrumb> */}
       <div className="site-layout-content">Content</div>
-      <PocketCard data={data} />
+      {click.click ? <IndependentCard clickBoolean={click.click} setClick={setClick} /> : <PocketCard clickBoolean={click.click} setClick={setClick} data={data} />}
     </Content>
   );
 }

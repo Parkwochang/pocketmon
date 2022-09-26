@@ -11,6 +11,14 @@ export const listLength = atom({
   },
 });
 
+export const handOverData = atom({
+  key: 'handOverData',
+  default: {
+    click: false,
+    data: [],
+  },
+});
+
 // NOTE :: 전체 포켓몬 리스트
 
 export const pocketListState = atom({
