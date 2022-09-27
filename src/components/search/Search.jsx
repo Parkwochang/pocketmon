@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { pocketListState } from '../../atom/atom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { pocketListState, searchName } from '../../atom/atom';
 
 export default function Search(props) {
-  const [search, setSearch] = useState('');
-
-  const searchData = useRecoilValue(pocketListState);
-  console.log(searchData);
-  const data = searchData.data.name;
+  const [search, setSearch] = useRecoilState(searchName);
+  const [searchTwo, setSearchTwo] = useRecoilValue(searchName);
 
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
+    setSearchTwo(search);
   };
-
-  // const fillterName = data.filter((p) => p.includes(search));
-  // console.log(fillterName);
 
   return (
     <>

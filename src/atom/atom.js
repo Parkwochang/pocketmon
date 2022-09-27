@@ -11,6 +11,11 @@ export const listLength = atom({
   },
 });
 
+export const searchName = atom({
+  key: 'pocketSearch',
+  default: '',
+});
+
 export const handOverData = atom({
   key: 'handOverData',
   default: {

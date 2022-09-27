@@ -1,5 +1,8 @@
 import { Card } from 'antd';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { pocketListState, searchName } from '../../atom/atom';
 import { color } from '../../data/color';
+import React, { useEffect } from 'react';
 
 const gridStyle = {
   width: '25%',
@@ -12,6 +15,17 @@ export default function PocketCard(props) {
   const { data } = props;
   const { setClick } = props;
   const { clickBoolean } = props;
+  const search = useRecoilValue(searchName);
+
+  const [list, setList] = useRecoilState(pocketListState);
+
+  const filterTitle = data.data.filter((d) => {
+    return d.name.includes(search);
+  });
+  console.log(filterTitle);
+  useEffect(() => {
+    setList((pre) => ({ ...pre, data: filterTitle }));
+  }, [list]);
 
   return (
     <Card>
