@@ -17,19 +17,16 @@ export default function PocketCard(props) {
   const { clickBoolean } = props;
   const search = useRecoilValue(searchName);
 
-  const [list, setList] = useRecoilState(pocketListState);
-
   const filterTitle = data.data.filter((d) => {
     return d.name.includes(search);
   });
-  console.log(filterTitle);
-  useEffect(() => {
-    setList((pre) => ({ ...pre, data: filterTitle }));
-  }, [list]);
+
+  // console.log(filterTitle, '필터 처리');
+  // filterTitle.map((res) => console.log(res, '필터 처리 된 애들'));
 
   return (
     <Card>
-      {data.data.map((res) => {
+      {filterTitle.map((res) => {
         const handOverData = res;
         return (
           <Card.Grid style={gridStyle} key={res.id} onClick={() => setClick((pre) => ({ ...pre, click: !clickBoolean, data: handOverData }))}>
@@ -45,5 +42,22 @@ export default function PocketCard(props) {
         );
       })}
     </Card>
+    // <Card>
+    //   {data.data.map((res) => {
+    //     const handOverData = res;
+    //     return (
+    //       <Card.Grid style={gridStyle} key={res.id} onClick={() => setClick((pre) => ({ ...pre, click: !clickBoolean, data: handOverData }))}>
+    //         <img src={res.sprites} alt="pocketmon" style={{ width: '80%' }} />
+    //         <p>{res.name}</p>
+    //         <p>{res.height}</p>
+    //         <div style={{ display: 'flex' }}>
+    //           {res.types.map((root) => (
+    //             <span style={{ width: '45%', backgroundColor: `${color[root]}` }}>{root}</span>
+    //           ))}
+    //         </div>
+    //       </Card.Grid>
+    //     );
+    //   })}
+    // </Card>
   );
 }

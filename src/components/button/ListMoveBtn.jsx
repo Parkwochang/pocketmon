@@ -1,8 +1,10 @@
-export default function ListMoveBtn() {
+export default function ListMoveBtn(props) {
+  const { btnClick } = props;
+
   return (
     <>
-      <button>왼쪽</button>
-      <button>오른쪽</button>
+      <button onClick={() => btnClick('left')}>왼쪽</button>
+      <button onClick={() => btnClick('right')}>오른쪽</button>
     </>
   );
 }

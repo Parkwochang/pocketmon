@@ -2,11 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import PageMoveList from '../List/PageMoveList';
 import { Layout } from 'antd';
 import MenuHeader from '../Header/Header';
-import MainFooter from '../../footer/Footer';
+import MainFooter from '../../footer/footer';
 import MainList from '../List/MainList';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useEffect } from 'react';
-import { listLength, pocketListState } from '../../../atom/atom';
+import { handOverData, listLength, pocketListState } from '../../../atom/atom';
 import pocketmonApiList from '../../../api/api';
 import axios from 'axios';
 import Search from '../../search/Search';
@@ -17,6 +17,8 @@ export default function Main() {
   const [list, setList] = useRecoilState(pocketListState);
 
   const { limit, offset } = editIndex;
+
+  const click = useRecoilValue(handOverData); // 검색 창 표시할지 유무용
 
   // const { loading } = list; -> 로딩용
 
@@ -82,7 +84,7 @@ export default function Main() {
       <Layout className="layout">
         {<MenuHeader />}
         {/* {loading ? <Loading /> : } */}
-        <Search />
+        {!click.click && <Search />}
         <MainList />
         <MainFooter />
         <PageMoveList click={() => navigate('/')} />

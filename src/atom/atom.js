@@ -16,8 +16,8 @@ export const searchName = atom({
   default: '',
 });
 
-export const handOverData = atom({
-  key: 'handOverData',
+export const sendData = atom({
+  key: 'sendData',
   default: {
     click: false,
     data: [],

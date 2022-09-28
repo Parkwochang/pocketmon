@@ -11,3 +11,19 @@ export default async function pocketmonApiList() {
   const res = await axios(URL);
   return res;
 }
+
+/* export default async function pocketmonApiListMinsub() {
+  const res = await axios(URL, {
+    transformResponse: [
+      function (data) {
+        let results = JSON.parse(data).results;
+        let Arr = [];
+
+        results.map((res) => axios(res.url).then((res) => Arr.push(res.data)));
+
+        return data;
+      },
+    ],
+  });
+  return res;
+} */

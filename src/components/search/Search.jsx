@@ -3,20 +3,20 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { pocketListState, searchName } from '../../atom/atom';
 
 export default function Search(props) {
-  const [search, setSearch] = useRecoilState(searchName);
-  const [searchTwo, setSearchTwo] = useRecoilValue(searchName);
+  const [searchTwo, setSearchTwo] = useRecoilState(searchName);
 
+  /**
+   *
+   * @param {*} e
+   *
+   */
   const onChangeSearch = (e) => {
-    setSearch(e.target.value);
-    setSearchTwo(search);
+    setSearchTwo(e.target.value);
   };
 
   return (
     <>
-      <input type="text" value={search} onChange={onChangeSearch} />
-      <button type="submit" onClick={() => {}}>
-        포켓몬 검색
-      </button>
+      <input type="text" value={searchTwo} onChange={onChangeSearch} placeholder="포켓몬 이름" />
     </>
   );
 }

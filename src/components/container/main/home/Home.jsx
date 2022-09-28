@@ -1,8 +1,8 @@
 import React from 'react';
-import StartBtn from '../../button/StartBtn';
 import { Link } from 'react-router-dom';
-import { routes } from '../../../routes';
 import { Layout } from 'antd';
+import { routes } from '../../../../routes';
+import StartBtn from '../../../button/StartBtn';
 
 export default function Home() {
   return (
