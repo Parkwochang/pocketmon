@@ -1,15 +1,15 @@
 import { useNavigate } from 'react-router-dom';
-import PageMoveList from '../List/PageMoveList';
+import PageMoveList from '../../List/PageMoveList';
 import { Layout } from 'antd';
-import MenuHeader from '../Header/Header';
-import MainFooter from '../../footer/footer';
-import MainList from '../List/MainList';
+import MenuHeader from '../../Header/Header';
+import MainFooter from '../../../footer/Footer';
+import MainList from '../../List/MainList';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useEffect } from 'react';
-import { handOverData, listLength, pocketListState } from '../../../atom/atom';
-import pocketmonApiList from '../../../api/api';
+import { sendData, listLength, pocketListState } from '../../../../atom/atom';
+import pocketmonApiList, { api, api2 } from '../../../../api/api';
 import axios from 'axios';
-import Search from '../../search/Search';
+import Search from '../../../search/Search';
 
 export default function Main() {
   const editIndex = useRecoilValue(listLength); // 상단 메뉴로 받은 파라미터
@@ -18,9 +18,13 @@ export default function Main() {
 
   const { limit, offset } = editIndex;
 
-  const click = useRecoilValue(handOverData); // 검색 창 표시할지 유무용
+  const click = useRecoilValue(sendData); // 검색 창 표시할지 유무용
 
   // const { loading } = list; -> 로딩용
+  // useEffect(() => {
+  console.log(api2(), 'api2');
+  // console.log(api2(), 'api');
+  // }, []);
 
   useEffect(() => {
     let arr = [];

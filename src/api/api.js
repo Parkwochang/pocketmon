@@ -12,6 +12,25 @@ export default async function pocketmonApiList() {
   return res;
 }
 
+let result = [];
+export const api = () => {
+  se();
+  async function se() {
+    result = await axios(URL).then((res) => res.data.results);
+    return result;
+  }
+  return result;
+};
+
+export const api2 = () => {
+  let result2 = [];
+  (async () => {
+    result2 = await axios(URL).then((res) => res.data.results);
+    // return result2;
+  })();
+  return result2;
+};
+
 /* export default async function pocketmonApiListMinsub() {
   const res = await axios(URL, {
     transformResponse: [
