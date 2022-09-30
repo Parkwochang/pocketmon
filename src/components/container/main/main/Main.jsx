@@ -7,7 +7,7 @@ import MainList from '../../List/MainList';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useEffect } from 'react';
 import { sendData, listLength, pocketListState } from '../../../../atom/atom';
-import pocketmonApiList, { api, api2 } from '../../../../api/api';
+import pocketmonApiList /* , { api, api2 } */ from '../../../../api/api';
 import axios from 'axios';
 import Search from '../../../search/Search';
 
@@ -22,8 +22,8 @@ export default function Main() {
 
   // const { loading } = list; -> 로딩용
   // useEffect(() => {
-  console.log(api2(), 'api2');
-  // console.log(api2(), 'api');
+  // console.log(api2(), 'api2');
+  // console.log(api(), 'api');
   // }, []);
 
   useEffect(() => {
