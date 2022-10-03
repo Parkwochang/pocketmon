@@ -13,6 +13,11 @@ export default async function pocketmonApiList() {
 }
 //호이스팅과 / 스코프 문제
 
+// export async function api() {
+//   const res = await axios('https://pokeapi.co/api/v2/pokemon?limit=1017');
+//   return res;
+// }
+
 // export const api = function () {
 //   let result = [];
 //   const se = async function () {
