@@ -4,7 +4,7 @@ import { Layout } from 'antd';
 import MenuHeader from '../../Header/Header';
 import MainFooter from '../../../footer/Footer';
 import MainList from '../../List/MainList';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useEffect } from 'react';
 import { sendData, listLength, pocketListState } from '../../../../atom/atom';
 import pocketmonApiList /* , { api, api2 } */ from '../../../../api/api';
@@ -14,7 +14,7 @@ import Search from '../../../search/Search';
 export default function Main() {
   const editIndex = useRecoilValue(listLength); // 상단 메뉴로 받은 파라미터
 
-  const [list, setList] = useRecoilState(pocketListState);
+  const setList = useSetRecoilState(pocketListState);
 
   const { limit, offset } = editIndex;
 
@@ -79,7 +79,7 @@ export default function Main() {
           loading: false,
         }));
       });
-  }, [editIndex]);
+  }, [limit, offset, sendData.data]);
 
   const navigate = useNavigate();
 

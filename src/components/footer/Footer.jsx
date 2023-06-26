@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 
 export default function MainFooter() {
-  const { Header, Content, Footer } = Layout;
+  const { Footer } = Layout;
   return (
     <Footer
       style={{

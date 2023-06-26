@@ -2,7 +2,7 @@ import { Card } from 'antd';
 import { useRecoilValue } from 'recoil';
 import { searchName } from '../../atom/atom';
 import { color } from '../../data/color';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const gridStyle = {
   width: '25%',
