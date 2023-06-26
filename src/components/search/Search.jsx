@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { pocketListState, searchName } from '../../atom/atom';
+import { searchName } from '../../atom/atom';
 
-export default function Search(props) {
+export default function Search() {
   const [searchTwo, setSearchTwo] = useRecoilState(searchName);
 
   /**

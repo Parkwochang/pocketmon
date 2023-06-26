@@ -5,7 +5,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { pocketListState, sendData } from '../../../atom/atom';
 import IndependentCard from '../../card/independentCard';
 
-export default function MainList(props) {
+export default function MainList() {
   const { Content } = Layout;
 
   const data = useRecoilValue(pocketListState);

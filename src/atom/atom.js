@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { atom, selector, selectorFamily } from 'recoil';
+
+import { atom, selectorFamily } from 'recoil';
 import pocketmonApiList from '../api/api';
 
 // NOTE :: 상단 메뉴에 따른 매개변수
@@ -41,12 +41,12 @@ export const pocketListApi = selectorFamily({
   key: 'pocketListState',
   get:
     (limit) =>
-    async ({ get }) => {
-      const res = await pocketmonApiList(limit).then((res) => res.data.results);
-      try {
-        return res;
-      } catch (error) {
-        console.log(error);
-      }
-    },
+      async ({ get }) => {
+        const res = await pocketmonApiList(limit).then((res) => res.data.results);
+        try {
+          return res;
+        } catch (error) {
+          console.log(error);
+        }
+      },
 });
