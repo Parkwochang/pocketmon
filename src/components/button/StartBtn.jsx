@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default function StartBtn({ click }) {
+const StartBtn = ({ click }) => {
   return (
     <>
-      <button onClick={click}>시작하기</button>
+      <button onClick={click}>Find Pokemon !</button>
     </>
   );
 }
+
+export default StartBtn;

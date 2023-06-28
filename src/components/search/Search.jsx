@@ -2,7 +2,7 @@ import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { searchName } from '../../atom/atom';
 
-export default function Search() {
+const Search = () => {
   const [searchTwo, setSearchTwo] = useRecoilState(searchName);
 
   /**
@@ -16,7 +16,10 @@ export default function Search() {
 
   return (
     <>
-      <input type="text" value={searchTwo} onChange={onChangeSearch} placeholder="포켓몬 이름" />
+      <input type="text" value={searchTwo} onChange={onChangeSearch} placeholder="Let's find your Pokemon !" />
     </>
   );
 }
+
+
+export default Search;
