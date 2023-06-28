@@ -24,3 +24,16 @@ code {
   float: right;
   margin: 16px 0 16px 24px;
 } */
+
+.site-card-border-less-wrapper {
+  justify-content: center;
+}
+
+.layout {
+  text-align: center;
+}
+
+.background {
+  background-image: url("../public/background.png");
+  background-size: cover;
+}
