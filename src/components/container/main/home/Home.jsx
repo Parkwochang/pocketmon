@@ -4,13 +4,15 @@ import { Layout } from 'antd';
 import { routes } from '../../../../routes';
 import StartBtn from '../../../button/StartBtn';
 
-export default function Home() {
+const Home = () => {
   return (
     <Layout className="layout">
-      <h1>pocketmon</h1>
+      {/* <h1>pocketmon</h1> */}
       <Link to={routes.MAIN}>
         <StartBtn />
       </Link>
     </Layout>
   );
 }
+
+export default Home;
